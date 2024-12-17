@@ -20,8 +20,8 @@ FASTLED_USING_NAMESPACE
 
 #define LED_TYPE    WS2811
 #define COLOR_ORDER GRB
-#define NUM_LEDS    12
-#define NUM_LINES    3
+#define NUM_LEDS    160
+#define NUM_LINES    6
 CRGB leds[NUM_LINES][NUM_LEDS];
 
 #define BRIGHTNESS         255  //100% brightness (led colour of white fades along legnth of strip)
@@ -210,20 +210,25 @@ struct Circle{
 //create array:
 Position positions[NUM_LINES][NUM_LEDS]; // 2D array of Position structs
 
-//store positional geometric starting information
-float x_offsets[6]={0.,12.5,12.5*2};//.,60.,77.5,90.};
-float y_offsets[6]={0.,0.,0.};//,30.,20.,10.};
-float LED_pitch = 32.5;
+//MINI DEV ARRAY store positional geometric starting information
+// float x_offsets[6]={0.,12.5,12.5*2};//.,60.,77.5,90.};
+// float y_offsets[6]={0.,0.,0.};//,30.,20.,10.};
+// float LED_pitch = 32.5;
+
+// Overhead LEDS
+float x_offsets[6]={0.,125.,360.,560.,840.,970.};//.,60.,77.5,90.};
+float y_offsets[6]={0.,0.,0.,0.,0.,0.};//,30.,20.,10.};
+float LED_pitch = 30.;
 
 // define stage limits
-int xmin=-140;
-int xmax=140;
-int ymin=-50;
-int ymax=350;
+int xmin=-500;
+int xmax=1500;
+int ymin=-500;
+int ymax=5000;
 
 // Initialize objects at global scope.
-Gaussian g0{255,100,20};
-Circle c0{10,150,2.5,1};
+Gaussian g0{255,400,50};
+Circle c0{10,150,5,5};
 
 void update_circle_pos(){
   c0.x_pos+=c0.x_vel;
